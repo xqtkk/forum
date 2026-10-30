@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-notifications">
+{{template "site-header" .}}
+
+<main>
+    <h1 class="page-title">Notifications</h1>
+    <section class="notifications-container">
+        {{$hasNotifications := false}}{{range .Activities}}
+        {{if not .IsRead}}{{$hasNotifications = true}}
+        <div class="notification-item unread">
+            <div class="notification-type">{{.Type}}</div>
+            <div class="timestamp">Created At: {{.CreatedAt}}</div>
+            {{if .CommentContent}}
+            <p class="comment-content">Comment: {{.CommentContent}}</p>
+            {{end}}
+            {{if .PostID}}
+            <a href="/post?id={{.PostID}}" class="post-link">View Post</a>
+            {{end}}
+            <form method="post" action="/notifications?action=read&id={{.ID}}">
+                <button type="submit" class="mark-as-read-button">Mark as Read</button>
+            </form>
+        </div>
+        {{end}}
+        {{end}}
+    {{if not $hasNotifications}}<p class="no-posts">You’re all caught up. No unread notifications.</p>{{end}}</section>
+</main>
+{{template "site-footer" .}}</body>
+</html>

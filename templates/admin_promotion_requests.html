@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications for promotion to moderator</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-admin-promotion-requests">
+{{template "site-header" .}}
+<main>
+    <section class="content">
+        <h1 class="title">Applications for promotion to moderator</h1>
+
+        {{if .Requests}}
+        <table class="requests-table">
+            <thead>
+            <tr>
+                <th>UserID</th>
+                <th>Username</th>
+                <th>Reason</th>
+                <th>Submitted</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range .Requests}}
+            <tr>
+                <td>{{.UserID}}</td>
+                <td>{{.Username}}</td>
+                <td>{{.Reason}}</td>
+                <td>{{.Created.Format "02 Jan 2006 15:04"}}</td>
+                <td>
+                    <div class="action-buttons">
+                        <form action="/approve-request" method="POST" >
+                            <input type="hidden" name="request_id" value="{{.ID}}">
+                            <button type="submit" class="btn btn-approve">Approve</button>
+                        </form>
+                        <form action="/deny-request" method="POST">
+                            <input type="hidden" name="request_id" value="{{.ID}}">
+                            <button type="submit" class="btn btn-deny">Reject</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+        {{else}}
+        <div class="no-requests">
+            <p>There are no active promotion requests</p>
+        </div>
+        {{end}}
+    </section>
+</main>
+{{template "site-footer" .}}</body>
+</html>

@@ -1,0 +1,4 @@
+{$FORUM_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy forum:4000
+}

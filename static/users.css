@@ -1,0 +1,110 @@
+/* users.css */
+.content {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-bottom: 35px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #3498db;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 600px;
+    overflow-x: auto;
+}
+
+th {
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: left;
+    padding: 15px 20px;
+    font-weight: 600;
+}
+
+td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ecf0f1;
+    color: #2c3e50;
+}
+
+tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+tr:last-child td {
+    border-bottom: 2px solid #3498db;
+}
+
+button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+button[type="submit"] {
+    background-color: #27ae60;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #219a52;
+    transform: translateY(-1px);
+}
+
+form[action*="demote"] button {
+    background-color: #e74c3c;
+}
+
+form[action*="demote"] button:hover {
+    background-color: #c0392b;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .content {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    th, td {
+        padding: 12px 15px;
+    }
+}

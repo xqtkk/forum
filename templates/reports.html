@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-reports">
+{{template "site-header" .}}
+<main>
+  <section class="content">
+    <h1>Open Reports</h1>
+    {{if .Reports}}
+    <table border="1">
+      <tr>
+        <th>Post Title</th>
+        <th>Reported By</th>
+        <th>Actions</th>
+      </tr>
+      {{range .Reports}}
+      <tr>
+        <td>{{.PostTitle}}</td>
+        <td>{{.Reporter}}</td>
+        <td>
+          <div class="action-buttons">
+            <a href="/post?id={{.PostID}}" class="open-post">📝 Open Post</a>
+            <form method="post" action="/reports?action=ignore&id={{.ID}}">
+              <button type="submit" class="btn-ignore">❌ Ignore</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {{end}}
+    </table>
+    {{else}}
+    <p>No open reports.</p>
+    {{end}}
+  </section>
+</main>
+{{template "site-footer" .}}</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Post</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-post">
+    {{template "site-header" .}}
+    <main>
+        <section class="post-container">
+            <h1 class="post-title">{{.Post.Title}}</h1>
+            <p class="post-content">{{.Post.Content}}</p>
+            {{if .Post.ImagePath}}
+            <img src="/{{.Post.ImagePath}}" alt="Post Image" class="post-image">
+            {{end}}      
+            <p class="post-meta">Category: <span class="post-category">{{.Post.Category}}</span></p>
+            <p class="post-meta">Posted by: <a href="/profile?id={{.Post.AuthorID}}" class="post-author">{{.Post.Author}}</a></p>
+            {{if .LoggedIn}}
+            <div class="post-actions">
+                <div class="actions-left" data-reactions>
+                    <form method="post" action="/post?action=like&id={{.Post.ID}}">
+                        <button type="submit" class="like-button" aria-pressed="{{eq .Post.Reaction "like"}}">Like ({{.Post.LikeCount}})</button>
+                    </form>
+                    <form method="post" action="/post?action=dislike&id={{.Post.ID}}">
+                        <button type="submit" class="dislike-button" aria-pressed="{{eq .Post.Reaction "dislike"}}">Dislike ({{.Post.DislikeCount}})</button>
+                    </form>
+                </div>
+                {{if or .Creator .Moder}}
+                <div class="actions-right">
+                    <a href="/edit-post?id={{.Post.ID}}" class="edit-button">Edit</a>
+                    <form method="post" action="/post?action=delete&id={{.Post.ID}}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                    {{if .Moder}}
+                    <form method="post" action="/post?action=report&id={{.Post.ID}}">
+                        <button type="submit" class="report-button">Report</button>
+                    </form>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+            {{else}}
+            <div class="post-actions">
+                <div class="actions-left">
+                    <a class="button quiet" href="/login">Like ({{.Post.LikeCount}})</a><a class="button quiet" href="/login">Dislike ({{.Post.DislikeCount}})</a>
+                </div>
+            </div>
+            {{end}}
+        </section>
+
+        <!-- Comments Section -->
+        <section class="comments-section">
+            <h2>Comments</h2>
+            {{if .Post.Comments}}
+            <ul class="comments-list">
+                {{range .Comments }}
+                <li class="comment-item" id="comment-{{.ID}}">
+                    <p class="comment-author"><a href="/profile?id={{.UserID}}">{{ .Author }}</a></p>
+                    <p class="comment-content">{{ .Content }}</p>
+                    {{if $.LoggedIn}}
+                    <div class="comment-actions" data-reactions>
+                        <form method="post" action="/comment?id={{.ID}}&action=like">
+                            <button type="submit" class="like-button" aria-pressed="{{eq .Reaction "like"}}">Like ({{ .LikeCount }})</button>
+                        </form> 
+                        <form method="post" action="/comment?id={{.ID}}&action=dislike">
+                            <button type="submit" class="dislike-button" aria-pressed="{{eq .Reaction "dislike"}}">Dislike ({{ .DislikeCount}})</button>
+                        </form>  
+                        {{if eq .UserID $.SessionUserID}}
+                        <details class="comment-editor"><summary class="button quiet small">Update</summary>
+                        <form method="post" action="/comment?id={{.ID}}&action=update" data-confirm="Save changes to this comment?">
+                            <label for="edit-comment-{{.ID}}">Edit your comment</label>
+                            <textarea id="edit-comment-{{.ID}}" name="content" maxlength="5000" required>{{.Content}}</textarea>
+                            <div class="editor-actions"><button type="submit" class="update-button">Confirm update</button><button type="button" data-cancel-editor>Cancel</button></div>
+                        </form></details>
+                        {{end}}
+                        {{if or (eq .UserID $.SessionUserID) (eq $.UserRole "moderator") (eq $.UserRole "admin")}}
+                        <form method="post" action="/comment?id={{.ID}}&action=delete">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                        {{end}}
+                    </div>
+                    {{else}}
+                    <p>👍 Like ({{ .LikeCount }})</p>
+                    <p>👎 Dislike ({{ .DislikeCount }})</p>
+                    {{end}}
+                </li>
+                {{ end }}
+            </ul>
+            {{else}}
+            <p>No comments yet. Be the first to comment!</p>
+            {{end}}
+
+            <!-- Add Comment Form -->
+            {{if .LoggedIn}}
+            <form method="post" action="/post?action=comment&id={{.Post.ID}}" class="comment-form">
+                <label for="comment-content" class="form-label">Your comment</label><textarea id="comment-content" name="content" maxlength="5000" placeholder="Add a comment..." required></textarea>
+                <button type="submit" class="comment-button">Post Comment</button>
+            </form>
+            {{else}}
+            <p>You must be logged in to post a comment. <a href="/login">Login</a> or <a href="/register">Register</a>.</p>
+            {{end}}
+        </section>
+    </main>
+{{template "site-footer" .}}</body>
+</html>

@@ -1,0 +1,132 @@
+/* requests.css */
+.content {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-bottom: 35px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #3498db;
+}
+
+.requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 600px;
+    overflow-x: auto;
+}
+
+.requests-table thead tr {
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: left;
+}
+
+.requests-table th,
+.requests-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.requests-table tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+.requests-table tbody tr:last-of-type {
+    border-bottom: 2px solid #3498db;
+}
+
+.requests-table tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+.btn-approve {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #219a52;
+    transform: translateY(-1px);
+}
+
+.btn-deny {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-deny:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+.no-requests {
+    text-align: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 30px;
+    color: #7f8c8d;
+    font-size: 1.1em;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .content {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .requests-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8em;
+    }
+
+    .requests-table th,
+    .requests-table td {
+        padding: 12px 15px;
+    }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-readnotifications">
+    {{template "site-header" .}}
+
+    <main>
+        <h1 class="page-title">Notification archive</h1>
+        <section class="notifications-container">
+            {{$hasNotifications := false}}{{range .Activities}}
+            {{if .IsRead}}{{$hasNotifications = true}}
+            <div class="notification-item">
+                <div class="notification-type">{{.Type}}</div>
+                <div class="timestamp">Created At: {{.CreatedAt}}</div>
+                {{if .CommentContent}}
+                <p class="comment-content">Comment: {{.CommentContent}}</p>
+                {{end}}
+                {{if .PostID}}
+                <a href="/post?id={{.PostID}}" class="post-link">View Post</a>
+                {{end}}
+            </div>
+            {{end}}
+            {{end}}
+        {{if not $hasNotifications}}<p class="no-posts">No archived notifications yet.</p>{{end}}</section>
+    </main>
+{{template "site-footer" .}}</body>
+</html>

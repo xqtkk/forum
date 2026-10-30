@@ -1,0 +1,89 @@
+/* formoder.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.sectt {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.sectt main {
+    background: white;
+    padding: 40px 60px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.sectt h1 {
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #3498db;
+}
+
+.sectt p {
+    color: #7f8c8d;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.sectt a {
+    display: inline-block;
+    background-color: #3498db;
+    color: white !important;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.sectt a:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .sectt main {
+        padding: 30px;
+        margin: 20px;
+    }
+
+    .sectt h1 {
+        font-size: 1.8em;
+    }
+
+    .sectt p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .sectt h1 {
+        font-size: 1.6em;
+    }
+
+    .sectt a {
+        width: 100%;
+        padding: 15px;
+    }
+}

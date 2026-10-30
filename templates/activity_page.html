@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Activity</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-activity-page">
+{{template "site-header" .}}
+
+<main>
+    <h1 class="page-title">User Activity</h1>
+    <section class="activity-container">
+        {{range .Activities}}
+        <div class="activity-item">
+            <div class="activity-type">{{.Type}}</div>
+            <div class="timestamp">Created At: {{.CreatedAt}}</div>
+            {{if .CommentContent}}
+            <p class="comment-content">Comment: {{.CommentContent}}</p>
+            {{end}}
+            {{if .PostID}}
+            <a href="/post?id={{.PostID}}" class="post-link">View Post</a>
+            {{end}}
+        </div>
+        {{else}}<p class="no-posts">Your posts, comments, and reactions will appear here.</p>{{end}}
+    </section>
+</main>
+{{template "site-footer" .}}</body>
+</html>

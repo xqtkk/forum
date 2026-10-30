@@ -1,0 +1,250 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.heddy {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 250px;
+}
+
+.forum {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.forum a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.forum a:hover {
+    opacity: 0.8;
+}
+
+.left, .right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.left a, .right a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.left a:hover, .right a:hover {
+    opacity: 0.8;
+}
+
+/* User menu styles */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.circle {
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    color: #007bff;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.circle::after {
+    content: "▼"; /* Иконка стрелки вниз */
+    position: absolute;
+    bottom: -20px; /* Расположение под кругом */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #007bff;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.circle:hover::after {
+    opacity: 1; /* Показываем стрелку при наведении */
+}
+
+.circle:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    min-width: 120px;
+    text-align: center;
+    z-index: 10;
+}
+
+.dropdown a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    transition: background-color 0.3s;
+}
+
+.dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Основной контент */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 28px;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.notifications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.notification-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.notification-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notification-type {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.timestamp {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.comment-content {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.post-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.post-link:hover {
+    background-color: #005bb5;
+}
+
+.mark-as-read-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mark-as-read-button:hover {
+    background-color: #218838;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .heddy {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .left, .right {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .notification-item {
+        padding: 15px;
+    }
+}
+
+.circle::after {
+    content: "▼"; /* Иконка стрелки вниз */
+    position: absolute;
+    bottom: -20px; /* Расположение под кругом */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #007bff;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.circle:hover::after {
+    opacity: 1; /* Показываем стрелку при наведении */
+}

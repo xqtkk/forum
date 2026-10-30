@@ -1,0 +1,255 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.forum {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.forum a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.forum a:hover {
+    opacity: 0.8;
+}
+
+.heddy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left, .right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.left a, .right a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.left a:hover, .right a:hover {
+    opacity: 0.8;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}
+
+.circle:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.dropdown a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    transition: background-color 0.3s;
+}
+
+.dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Основной контент */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+aside {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+
+aside h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: block;
+    padding: 8px 0;
+    transition: opacity 0.3s;
+}
+
+aside ul li a:hover {
+    opacity: 0.8;
+}
+
+section {
+    flex-grow: 1;
+    max-width: 800px;
+}
+
+.post-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+article {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+article h2 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 24px;
+}
+
+article p {
+    color: #666;
+    margin: 0 0 15px;
+    font-size: 16px;
+}
+
+.category-tag {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.no-posts {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .heddy {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .left, .right {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    aside {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    section {
+        width: 100%;
+    }
+}
+
+.circle::after {
+    content: "▼"; /* Иконка стрелки вниз */
+    position: absolute;
+    bottom: -20px; /* Расположение под кругом */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #007bff;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.circle:hover::after {
+    opacity: 1; /* Показываем стрелку при наведении */
+}

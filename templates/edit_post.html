@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title> <!-- Используем тот же CSS, что и для create_post -->
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-edit-post">
+    {{template "site-header" .}}
+    <main>
+        <section class="content">
+            <h1 class="page-title">Edit your post</h1>
+            {{ if .Check }}
+            <p id="check" style="color: red;">{{ .Check }}</p>
+            {{ end }}
+            <form action="/edit-post?id={{.Post.ID}}" method="POST" class="create-post-form" enctype="multipart/form-data">
+                <label for="title" class="form-label">Post Title:</label>
+                <input type="text" id="title" name="title" maxlength="200" class="form-input" value="{{.Post.Title}}" required>
+                <label for="content" class="form-label">Post Content:</label>
+                <textarea id="content" name="content" maxlength="20000" class="form-textarea" required>{{.Post.Content}}</textarea>
+                <fieldset class="form-fieldset">
+                    <legend class="form-label">Categories (choose any)</legend>
+                    {{range .Category}}
+                    <label class="category-choice"><input type="checkbox" name="category_ids" value="{{.ID}}" {{if $.Post.HasCategory .ID}}checked{{end}}> {{.Name}}</label>
+                    {{end}}
+                </fieldset>
+                <label for="image" class="form-label">Upload Image:</label>
+                {{if .Post.ImagePath}}
+                <div>
+                    <label>Текущее изображение:</label>
+                    <img src="/{{.Post.ImagePath}}" alt="Current Image" style="max-width: 300px; max-height: 300px;">
+                </div>
+                {{end}}
+                <input type="file" id="image" data-image-input name="image" class="form-input" accept="image/*">
+                <div class="image-preview" data-image-preview hidden><img data-preview-image alt="Selected image preview"><p data-preview-name></p><button type="button" data-clear-image>Remove selected image</button></div><p class="field-hint" data-image-error role="status"></p>
+                <input type="hidden" name="user_id" value="{{.UserId}}">
+                <button type="submit" class="create-post-button">Save</button>
+            </form>
+        </section>
+    </main>
+{{template "site-footer" .}}</body>
+</html>

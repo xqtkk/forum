@@ -1,0 +1,157 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.heddy {
+    display: flex;
+    justify-content: flex-end; /* Ссылки справа */
+    width: 90%;
+    max-width: 1200px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.forum {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.forum a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.forum a:hover {
+    opacity: 0.8;
+}
+
+.right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.right a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.right a:hover {
+    opacity: 0.8;
+}
+
+/* Форма регистрации */
+.registration-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    width: calc(100% - 22px); /* Учитываем padding и border */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #005bb5;
+}
+
+/* Социальные кнопки */
+.social-auth {
+    margin-top: 20px;
+}
+
+.social-link {
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.social-link:hover {
+    background-color: #ddd;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .heddy {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .registration-form {
+        margin: 20px auto;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Posts</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-my-posts">
+{{template "site-header" .}}
+
+<main>
+    <section class="content"><h1>{{.PageTitle}}</h1>
+        {{if .Posts}}
+        {{range .Posts}}
+        <a href="/post?id={{.ID}}" class="post-link">
+            <article class="post">
+                <h2 class="post-title">{{.Title}}</h2>
+                <p class="post-content">{{.Content}}</p>
+                {{if .Category}}
+                <span class="category-tag">{{.Category}}</span>
+                {{end}}
+            </article>
+        </a>
+        {{end}}
+        {{else}}
+        <p class="no-posts">No posts found.</p>
+        {{end}}
+    </section>
+</main>
+{{template "site-footer" .}}</body>
+</html>

@@ -1,0 +1,18 @@
+{{define "site-header"}}<header class="site-header">
+ <a class="brand" href="/" aria-label="Forum home"><span class="brand-mark">f.</span> forum<span class="brand-dot">/</span></a>
+ <nav class="site-nav" aria-label="Main navigation">
+ <a href="/">Discover</a>
+ {{if .Username}}<a href="/my-posts">My posts</a><a href="/liked-posts">Saved likes</a>
+ {{if or .Moder .Moders .Admin}}{{else}}{{if .Stat}}<a href="/gomoder">Become a moderator</a>{{end}}{{end}}
+ {{if .Admin}}<a href="/reports">Reports</a><a href="/requests">Requests</a><a href="/categories">Categories</a><a href="/users">Users</a>{{end}}
+ </nav><div class="header-actions">
+ <a href="/create-post" class="button primary small">+ New post</a>
+ <details class="account-menu"><summary aria-label="Account menu">{{.Username}}<span class="notification-badge" data-notification-count hidden></span></summary><div class="account-dropdown">
+ <a href="/profile">My profile</a><a href="/notifications" class="notification-nav" data-notification-link>Notifications<span class="notification-badge" data-notification-count hidden></span></a><a href="/notifications/read">Notification archive</a><a href="/activity-page">My activity</a>
+ <form action="/logout" method="post"><button class="text-button" type="submit">Sign out</button></form></div></details>
+ {{else}}</nav><div class="header-actions"><a href="/login" class="button quiet small">Sign in</a><a href="/register" class="button primary small">Join the community</a>{{end}}
+ </div></header>{{end}}
+{{define "auth-header"}}<header class="site-header"><a class="brand" href="/" aria-label="Forum home"><span class="brand-mark">f.</span> forum<span class="brand-dot">/</span></a><a class="back-link" href="/">← Back to discussions</a></header>{{end}}
+{{define "site-footer"}}<footer class="site-footer"><a href="/">forum /</a><span>A place for good conversations.</span></footer>{{end}}
+
+{{define "pagination"}}{{if or .PreviousURL .NextURL}}<nav class="pagination" aria-label="Pagination">{{if .PreviousURL}}<a class="button quiet small" href="{{.PreviousURL}}">← Previous</a>{{end}}<span>Page {{.Page}} of {{.TotalPages}}</span>{{if .NextURL}}<a class="button quiet small" href="{{.NextURL}}">Next →</a>{{end}}</nav>{{end}}{{end}}

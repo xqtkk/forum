@@ -1,0 +1,14 @@
+*.exe
+*.db
+*.db-*
+*.bak
+*.zip
+*.pem
+*.key
+.local
+.idea
+.git
+.env
+.env.*
+uploads
+tls

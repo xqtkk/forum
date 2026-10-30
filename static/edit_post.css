@@ -1,0 +1,236 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.forum {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.forum a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.forum a:hover {
+    opacity: 0.8;
+}
+
+.heddy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left, .right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.left a, .right a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.left a:hover, .right a:hover {
+    opacity: 0.8;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}
+
+.circle:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.dropdown a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    transition: background-color 0.3s;
+}
+
+.dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Основной контент */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.content {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    box-sizing: border-box; /* Добавлено для корректного расчета ширины */
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-input, .form-textarea, .form-select {
+    width: calc(100% - 22px); /* Учитываем padding и border */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Добавлено для корректного расчета ширины */
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.create-post-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Кнопка занимает всю ширину */
+    box-sizing: border-box; /* Добавлено для корректного расчета ширины */
+}
+
+.create-post-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.create-post-button:active {
+    transform: translateY(1px);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .heddy {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .left, .right {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+}
+
+.circle::after {
+    content: "▼"; /* Иконка стрелки вниз */
+    position: absolute;
+    bottom: -20px; /* Расположение под кругом */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #007bff;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.circle:hover::after {
+    opacity: 1; /* Показываем стрелку при наведении */
+}

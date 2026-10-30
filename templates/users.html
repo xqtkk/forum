@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users</title>
+<link rel="stylesheet" href="/static/app.css?v=5"><script src="/static/app.js?v=5" defer></script></head>
+<body class="page-users">
+{{template "site-header" .}}
+<main>
+  <section class="content">
+<h1>Users</h1>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Action</th>
+  </tr>
+  {{range .Users}}
+  <tr>
+    <td>{{.ID}}</td>
+    <td>{{.Username}}</td>
+    <td>{{.Email}}</td>
+    <td>{{.Role}}</td>
+    <td>
+      {{if eq .Role "user"}}
+      <form method="post" action="/users?action=promote&id={{.ID}}">
+        <button type="submit">Promote to Moderator</button>
+      </form>
+      {{else if eq .Role "moderator"}}
+      <form method="post" action="/users?action=demote&id={{.ID}}">
+        <button type="submit">Demote to User</button>
+      </form>
+      {{end}}
+    </td>
+  </tr>
+  {{end}}
+</table>
+  </section>
+</main>
+{{template "site-footer" .}}</body>
+</html>
